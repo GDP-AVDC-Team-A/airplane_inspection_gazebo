@@ -1,0 +1,97 @@
+nodes:
+  - id: 1
+    node_name: Airplane inspection
+    node_type: SEQUENCE
+    task: LAND
+    parameters: ""
+    is_recurrent: true
+    activate: false
+    parent: 0
+  - id: 2
+    node_name: Take off
+    node_type: TASK
+    task: TAKE_OFF
+    parameters: ""
+    is_recurrent: false
+    activate: false
+    parent: 1
+  - id: 3
+    node_name: Inspect right side surface
+    node_type: SEQUENCE
+    task: LAND
+    parameters: ""
+    is_recurrent: true
+    activate: false
+    parent: 1
+  - id: 4
+    node_name: Place at correct height
+    node_type: TASK
+    task: FOLLOW_PATH
+    parameters: "path: [ [0, 0, 2.4] ]"
+    is_recurrent: false
+    activate: false
+    parent: 3
+  - id: 5
+    node_name: Look at surface to inspect
+    node_type: TASK
+    task: ROTATE
+    parameters: "angle: 180"
+    is_recurrent: false
+    activate: false
+    parent: 3
+  - id: 6
+    node_name: Inspect windows line
+    node_type: TASK
+    task: FOLLOW_PATH
+    parameters: "path: [ [0, 10, 2.4] ]"
+    is_recurrent: false
+    activate: false
+    parent: 3
+  - id: 7
+    node_name: Move to the next surface
+    node_type: TASK
+    task: FOLLOW_PATH
+    parameters: "path: [ [0, 10, 4] , [-5.2, 10, 4]]"
+    is_recurrent: false
+    activate: false
+    parent: 1
+  - id: 8
+    node_name: Inspect left side surface
+    node_type: SEQUENCE
+    task: LAND
+    parameters: ""
+    is_recurrent: true
+    activate: false
+    parent: 1
+  - id: 9
+    node_name: Place at correct height
+    node_type: TASK
+    task: FOLLOW_PATH
+    parameters: "path: [[ -5.2,10,2]]"
+    is_recurrent: false
+    activate: false
+    parent: 8
+  - id: 10
+    node_name: Look at surface to inspect
+    node_type: TASK
+    task: ROTATE
+    parameters: "relative_angle: -180"
+    is_recurrent: false
+    activate: false
+    parent: 8
+  - id: 11
+    node_name: Explore windows line
+    node_type: TASK
+    task: FOLLOW_PATH
+    parameters: "path: [[ -5.2,0,2]]"
+    is_recurrent: false
+    activate: false
+    parent: 8
+  - id: 12
+    node_name: Final landing
+    node_type: TASK
+    task: LAND
+    parameters: ""
+    is_recurrent: false
+    activate: false
+    parent: 1
